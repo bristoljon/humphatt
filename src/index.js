@@ -10,13 +10,14 @@ import './css/base';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Application from './components/Application';
+import Home from './containers';
 import { Router, Route, browserHistory } from 'react-router';
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/" component={Application}>
+    <Route path="/" component={Home}>
     </Route>
-    <Route path="/beaver/:id" component={Application}/>
+    <Route path="/beaver/:id" component={Home}/>
     <Route path="*" component={Application}/>
   </Router>
 ), document.getElementById('app'));
