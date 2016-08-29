@@ -26,10 +26,10 @@ module.exports = function(options) {
   }
 
   return {
-    entry: options.production ? './app/index.js' : [
+    entry: options.production ? './src/index.js' : [
       'webpack-dev-server/client?http://localhost:8080',
       'webpack/hot/only-dev-server',
-      './app/index.js',
+      './src/index.js',
     ],
     debug: !options.production,
     devtool: options.devtool,
@@ -37,6 +37,12 @@ module.exports = function(options) {
       path: options.production ? './dist' : './build',
       publicPath: options.production ? '' : 'http://localhost:8080/',
       filename: options.production ? 'app.[hash].js' : 'app.js',
+    },
+    devServer: {
+      hot: true,
+      historyApiFallback: {
+        index: 'http://localhost:8080/'
+      }
     },
     module: {
       preLoaders: options.lint ? [

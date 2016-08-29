@@ -10,5 +10,13 @@ import './css/base';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Application from './components/Application';
+import { Router, Route, browserHistory } from 'react-router';
 
-ReactDOM.render(<Application />, document.getElementById('app'));
+ReactDOM.render((
+  <Router history={browserHistory}>
+    <Route path="/" component={Application}>
+    </Route>
+    <Route path="/beaver/:id" component={Application}/>
+    <Route path="*" component={Application}/>
+  </Router>
+), document.getElementById('app'));

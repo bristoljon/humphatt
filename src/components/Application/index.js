@@ -9,12 +9,13 @@ import Header from '../Header';
  */
 import styles from './style';
 
-const Application = () => {
+const Application = (props) => {
   return <div className={styles.main}>
     <div className={styles.wrap}>
       <Header />
 
       <main className={styles.body}>
+        <h1>{props.params.id}</h1>
         <p>Seems like creating your own React starter kit is a rite of passage. So, here's mine.</p>
         <p>For more information, see the <a href="https://github.com/bradleyboy/yarsk#yarsk">Readme</a>.</p>
       </main>
