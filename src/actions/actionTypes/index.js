@@ -1,0 +1,8 @@
+export default {
+  DEVICE_WIDTH: 'DEVICE_WIDTH',
+  LOG_IN: 'LOG_IN',
+  LOG_OUT: 'LOG_OUT',
+  SIGN_UP: 'SIGN_UP',
+  OPEN_MODAL: 'OPEN_MODAL',
+  CLOSE_MODAL: 'CLOSE_MODAL',
+};

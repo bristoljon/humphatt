@@ -41,8 +41,8 @@ module.exports = function(options) {
     devServer: {
       hot: true,
       historyApiFallback: {
-        index: 'http://localhost:8080/'
-      }
+        index: 'http://localhost:8080/',
+      },
     },
     module: {
       preLoaders: options.lint ? [
@@ -112,10 +112,12 @@ module.exports = function(options) {
       new HtmlWebpackPlugin({
         template: './conf/tmpl.html',
         production: true,
+        favicon: './favicon.ico',
       }),
     ] : [
       new HtmlWebpackPlugin({
         template: './conf/tmpl.html',
+        favicon: './favicon.ico',
       }),
     ],
     postcss: [autoprefixer],
@@ -123,7 +125,7 @@ module.exports = function(options) {
       'cheerio': 'window',
       'react/addons': true,
       'react/lib/ExecutionEnvironment': true,
-      'react/lib/ReactContext': true
-    }
+      'react/lib/ReactContext': true,
+    },
   };
 };

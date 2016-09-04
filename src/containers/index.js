@@ -1,28 +1,31 @@
-import React from 'react';
+import { connect } from 'react-redux';
 import Home from '../components/Home';
+import {
+  initialise,
+  userLogOut,
+  userLogIn,
+  openModal,
+  closeModal } from '../actions';
 
-export default class HomeContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      small: false,
-    }
-  }
-  componentWillMount = () => {
-    const mql = window.matchMedia(`(min-width: 640px)`);
-    mql.addListener(this.mediaQueryChanged);
-    this.setState({
-      mql,
-      small: mql.matches
-    });
-  }
-  mediaQueryChanged = (e) => {
-    this.setState({
-      small: !e.matches
-    });
-  }
-  render() {
-    return <Home small={this.state.small}/>
-  }
+const mapStateToProps = (state) => {
+  return  {
+    ...state,
+  };
+};
 
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    initialise: () => dispatch(initialise()),
+    onSignOut: () => dispatch(userLogOut()),
+    onSignIn: (email, pass) => dispatch(userLogIn(email, pass)),
+    onOpenModal: (modal) => dispatch(openModal(modal)),
+    onCloseModal: () => dispatch(closeModal()),
+  };
+};
+
+const Root = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
+
+export default Root;

@@ -15,7 +15,9 @@
     "no-underscore-dangle": 0,
     "quotes": [2, "single"],
     "semi": [2, "always"],
-    "space-before-function-paren": [2, "never"]
+    "space-before-function-paren": [2, "never"],
+    "react/prop-types": 0,
+    "react/jsx-space-before-closing": 0
   },
   "globals": {
     "expect": true
