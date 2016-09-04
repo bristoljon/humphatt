@@ -6,6 +6,14 @@ export default class Home extends React.Component {
   componentWillMount = () => {
     this.props.initialise();
   }
+  signIn = () => {
+    console.log('signin');
+    this.props.onOpenModal('SIGNIN');
+  }
+  signUp = () => {
+    console.log('signup');
+    this.props.onOpenModal('SIGNUP');
+  }
   render() {
     const props = this.props;
     const Modal = MODALS[props.modal];
@@ -16,7 +24,16 @@ export default class Home extends React.Component {
         <div className={styles.body}>
           <h1>{props.small ? 'Small' : 'Large'}</h1>
           <h1>{props.user.loggedIn ? props.user.displayName || props.user.email : null}</h1>
-          <input type="button" value="Sign out" onClick={props.onSignOut} />
+          <input
+            type="button"
+            value={props.user.loggedIn ? 'Sign out' : 'Sign in'}
+            onClick={props.user.loggedIn ? props.onSignOut : this.signIn}
+          />
+          <input
+            type="button"
+            value="Sign Up"
+            onClick={this.signUp}
+          />
         </div>
         {props.modal ? <Modal {...props} /> : null}
       </div>

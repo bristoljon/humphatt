@@ -32,7 +32,7 @@ export default class SignIn extends React.Component {
       e-mail:
       <input type="text" onChange={this.onChangeUser} value={this.state.user} />
       password:
-      <input type="text" onChange={this.onChangePass} value={this.state.pass} />
+      <input type="password" onChange={this.onChangePass} value={this.state.pass} />
       <input type="button" onClick={this.onSignIn} value={'GO'} />
       <p>{props.user.error ? props.user.error.message : null}</p>
     </Modal>);

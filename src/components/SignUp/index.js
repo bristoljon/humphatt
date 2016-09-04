@@ -8,26 +8,30 @@ export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: '',
+      email: '',
       pass: '',
+      displayName: '',
+      name: '',
     };
   }
   onSignUp = () => {
-    auth.createUserWithEmailAndPassword(this.state.user, this.state.pass)
+    console.log(this.state);
+    const { email, pass, displayName, name } = this.state;
+    auth.createUserWithEmailAndPassword(email, pass)
       .then(response => {
-        console.log('Great success', response);
         return auth.currentUser.updateProfile({
-          displayName: 'Jon Wyatt',
+          displayName,
+          name,
         });
       })
-      .then(() => { console.log('Updated'); })
+      .then(r => { console.log('Updated', r); })
       .catch(error => {
         console.log('Great Failure', error);
       });
   }
-  onChangeUser = (e) => {
+  onChangeEmail = (e) => {
     this.setState({
-      user: e.target.value,
+      email: e.target.value,
     });
   }
   onChangePass = (e) => {
@@ -35,14 +39,38 @@ export default class SignUp extends React.Component {
       pass: e.target.value,
     });
   }
+  onChangeDisplayName = (e) => {
+    this.setState({
+      displayName: e.target.value,
+    });
+  }
+  onChangeName = (e) => {
+    this.setState({
+      name: e.target.value,
+    });
+  }
   render() {
     return (<Modal onClose={this.onCloseModal}>
       <h1>Sign Up</h1>
-      e-mail:
-      <input type="text" onChange={this.onChangeUser} value={this.state.user} />
-      password:
-      <input type="text" onChange={this.onChangePass} value={this.state.pass} />
-      <input type="button" onClick={this.onSignUp} value={'GO'} />
+      <p>
+        name:
+        <input type="text" onChange={this.onChangeName} value={this.state.name} />
+      </p>
+      <p>
+        display name:
+        <input type="text" onChange={this.onChangeDisplayName} value={this.state.displayName} />
+      </p>
+      <p>
+        e-mail:
+        <input type="text" onChange={this.onChangeEmail} value={this.state.email} />
+      </p>
+      <p>
+        password:
+        <input type="password" onChange={this.onChangePass} value={this.state.pass} />
+      </p>
+      <p>
+        <input type="button" onClick={this.onSignUp} value={'GO'} />
+      </p>
     </Modal>);
   }
 }

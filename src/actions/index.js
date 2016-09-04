@@ -89,7 +89,10 @@ export function initialise() {
         dispatch({
           type: ACTION.LOG_IN,
           status: 'SUCCESS',
-          user,
+          user: {
+            displayName: user.displayName,
+            email: user.email,
+          },
         });
       } else {
         dispatch({
