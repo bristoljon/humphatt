@@ -77,6 +77,42 @@ export function userLogIn(email, pass) {
   };
 }
 
+export function userSignUp(email, pass) {
+  return dispatch => {
+    dispatch({
+      type: ACTION.SIGN_UP,
+      status: 'PENDING',
+      creds: {
+        email,
+        pass,
+      },
+    });
+    auth.createUserWithEmailAndPassword(email, pass)
+      // .then(response => {
+      //   return auth.currentUser.updateProfile({
+      //     displayName,
+      //     name,
+      //   });
+      // })
+      .then(r => {
+        dispatch({
+          type: ACTION.SIGN_UP,
+          status: 'SUCCESS',
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: ACTION.SIGN_UP,
+          status: 'FAILED',
+          error: {
+            code: error.code,
+            message: error.message,
+          },
+        });
+      });
+  };
+}
+
 export function initialise() {
   return dispatch => {
     dispatch(deviceWidthChange(window.innerWidth < 640));

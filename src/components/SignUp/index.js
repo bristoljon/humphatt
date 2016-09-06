@@ -1,6 +1,5 @@
 import React from 'react';
 // import styles from './style';
-import { auth } from '../../firebase';
 import Modal from '../../widgets/Modal';
 
 // const users = database.ref('users');
@@ -15,19 +14,8 @@ export default class SignUp extends React.Component {
     };
   }
   onSignUp = () => {
-    console.log(this.state);
-    const { email, pass, displayName, name } = this.state;
-    auth.createUserWithEmailAndPassword(email, pass)
-      .then(response => {
-        return auth.currentUser.updateProfile({
-          displayName,
-          name,
-        });
-      })
-      .then(r => { console.log('Updated', r); })
-      .catch(error => {
-        console.log('Great Failure', error);
-      });
+    const { email, pass } = this.state;
+    this.props.onUserSignUp(email, pass);
   }
   onChangeEmail = (e) => {
     this.setState({
@@ -50,7 +38,7 @@ export default class SignUp extends React.Component {
     });
   }
   render() {
-    return (<Modal onClose={this.onCloseModal}>
+    return (<Modal onClose={this.props.onCloseModal}>
       <h1>Sign Up</h1>
       <p>
         name:

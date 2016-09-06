@@ -18,6 +18,37 @@ export default function reducer(state = initialState, action) {
         ...state,
         modal: null,
       };
+    case ACTION.SIGN_UP:
+      switch (action.status) {
+        case 'PENDING':
+          return {
+            ...state,
+            user: {
+              ...state.user,
+              loggedIn: false,
+              email: action.creds.email,
+              pass: action.creds.pass,
+              error: null,
+            },
+            loading: true,
+          };
+        case 'SUCCESS':
+          return {
+            ...state,
+            loading: false,
+          };
+        case 'FAILED':
+          return {
+            ...state,
+            user: {
+              ...state.user,
+              loggedIn: false,
+              error: action.error,
+            },
+            loading: false,
+          };
+      }
+      break;
     case ACTION.LOG_IN:
       switch (action.status) {
         case 'PENDING':

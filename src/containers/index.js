@@ -5,7 +5,8 @@ import {
   userLogOut,
   userLogIn,
   openModal,
-  closeModal } from '../actions';
+  closeModal,
+  userSignUp } from '../actions';
 
 const mapStateToProps = (state) => {
   return  {
@@ -20,6 +21,7 @@ const mapDispatchToProps = (dispatch) => {
     onSignIn: (email, pass) => dispatch(userLogIn(email, pass)),
     onOpenModal: (modal) => dispatch(openModal(modal)),
     onCloseModal: () => dispatch(closeModal()),
+    onUserSignUp: (email, pass) => dispatch(userSignUp(email, pass)),
   };
 };
 
