@@ -1,7 +1,7 @@
-import SignUp from '../components/SignUp';
-import SignIn from '../components/SignIn';
+import keymirror from 'keymirror';
 
-export default {
-  SIGNUP: SignUp,
-  SIGNIN: SignIn,
-};
+export default keymirror({
+  SIGNIN: null,
+  SIGNUP: null,
+});
+

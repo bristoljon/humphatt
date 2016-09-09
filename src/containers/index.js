@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
     onSignIn: (email, pass) => dispatch(userLogIn(email, pass)),
     onOpenModal: (modal) => dispatch(openModal(modal)),
     onCloseModal: () => dispatch(closeModal()),
-    onUserSignUp: (email, pass) => dispatch(userSignUp(email, pass)),
+    onUserSignUp: (email, pass, displayName, name) => dispatch(userSignUp(email, pass, displayName, name)),
   };
 };
 

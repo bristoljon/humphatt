@@ -1,24 +1,20 @@
 import React from 'react';
 import styles from './style';
-import MODALS from '../../constants';
+import C from '../../constants';
+import Modal from '../Modal';
 
 export default class Home extends React.Component {
   componentWillMount = () => {
     this.props.initialise();
   }
   signIn = () => {
-    console.log('signin');
-    this.props.onOpenModal('SIGNIN');
+    this.props.onOpenModal(C.SIGNIN);
   }
   signUp = () => {
-    console.log('signup');
-    this.props.onOpenModal('SIGNUP');
+    this.props.onOpenModal(C.SIGNUP);
   }
   render() {
     const props = this.props;
-    const Modal = MODALS[props.modal];
-    console.log('Home.props', props);
-    console.log('MODAL', MODALS);
     return (<div className={styles.main}>
       <div className={`${styles.wrap} ${props.small ? 'mobile' : ''}`}>
         <div className={styles.body}>
@@ -35,7 +31,10 @@ export default class Home extends React.Component {
             onClick={this.signUp}
           />
         </div>
-        {props.modal ? <Modal {...props} /> : null}
+        <Modal
+          modal={props.status.modal}
+          onClose={props.onCloseModal}
+          user={props.user}/>
       </div>
     </div>);
   }

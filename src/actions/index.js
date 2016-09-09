@@ -1,5 +1,5 @@
 import ACTION from './actionTypes';
-import { auth } from '../firebase';
+import { auth, database } from '../firebase';
 
 function deviceWidthChange(small) {
   return {
@@ -77,7 +77,7 @@ export function userLogIn(email, pass) {
   };
 }
 
-export function userSignUp(email, pass) {
+export function userSignUp(email, pass, displayName, name) {
   return dispatch => {
     dispatch({
       type: ACTION.SIGN_UP,
@@ -85,15 +85,17 @@ export function userSignUp(email, pass) {
       creds: {
         email,
         pass,
+        displayName,
+        name,
       },
     });
     auth.createUserWithEmailAndPassword(email, pass)
-      // .then(response => {
-      //   return auth.currentUser.updateProfile({
-      //     displayName,
-      //     name,
-      //   });
-      // })
+      .then(response => {
+        return database.ref('users/' + response.uid).set({
+          displayName,
+          name,
+        });
+      })
       .then(r => {
         dispatch({
           type: ACTION.SIGN_UP,
@@ -101,6 +103,7 @@ export function userSignUp(email, pass) {
         });
       })
       .catch(error => {
+        console.log('error', error);
         dispatch({
           type: ACTION.SIGN_UP,
           status: 'FAILED',
@@ -113,6 +116,24 @@ export function userSignUp(email, pass) {
   };
 }
 
+// Grab additional data from users/ after log in
+function onUserLogIn(user) {
+  return dispatch => {
+    database.ref('users/' + user.uid).once('value', snapshot => {
+      const data = snapshot.val();
+      dispatch({
+        type: ACTION.LOG_IN,
+        status: 'SUCCESS',
+        user: {
+          email: user.email,
+          displayName: data.displayName,
+          name: data.name,
+        },
+      });
+    });
+  };
+}
+
 export function initialise() {
   return dispatch => {
     dispatch(deviceWidthChange(window.innerWidth < 640));
@@ -122,15 +143,9 @@ export function initialise() {
     });
     auth.onAuthStateChanged(user => {
       if (user) {
-        dispatch({
-          type: ACTION.LOG_IN,
-          status: 'SUCCESS',
-          user: {
-            displayName: user.displayName,
-            email: user.email,
-          },
-        });
-      } else {
+        dispatch(onUserLogIn(user));
+      }
+      else {
         dispatch({
           type: ACTION.LOG_OUT,
           status: 'SUCCESS',

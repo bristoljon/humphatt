@@ -5,6 +5,9 @@
     "es6": true,
     "mocha": true
   },
+  "plugins": [
+    "react"
+  ],
   "extends": ["standard", "standard-react", "standard-jsx"],
   "parser": "babel-eslint",
   "rules": {
@@ -16,10 +19,16 @@
     "quotes": [2, "single"],
     "semi": [2, "always"],
     "space-before-function-paren": [2, "never"],
+    "react/jsx-indent": [1, 2],
+    "indent": [1, 2],
     "react/prop-types": 0,
-    "react/jsx-space-before-closing": 0
+    "brace-style": [1, "stroustrup"],
+    "react/jsx-indent-props": [1, 2],
+    "react/jsx-no-bind": 0,
+    "react/jsx-space-before-closing": 0,
   },
   "globals": {
     "expect": true
   }
 }
+

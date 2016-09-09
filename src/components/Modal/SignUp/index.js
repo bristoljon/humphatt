@@ -1,6 +1,5 @@
 import React from 'react';
 // import styles from './style';
-import Modal from '../../widgets/Modal';
 
 // const users = database.ref('users');
 export default class SignUp extends React.Component {
@@ -14,8 +13,8 @@ export default class SignUp extends React.Component {
     };
   }
   onSignUp = () => {
-    const { email, pass } = this.state;
-    this.props.onUserSignUp(email, pass);
+    const { email, pass, name, displayName } = this.state;
+    this.props.onUserSignUp(email, pass, displayName, name);
   }
   onChangeEmail = (e) => {
     this.setState({
@@ -38,7 +37,7 @@ export default class SignUp extends React.Component {
     });
   }
   render() {
-    return (<Modal onClose={this.props.onCloseModal}>
+    return (<div>
       <h1>Sign Up</h1>
       <p>
         name:
@@ -59,6 +58,6 @@ export default class SignUp extends React.Component {
       <p>
         <input type="button" onClick={this.onSignUp} value={'GO'} />
       </p>
-    </Modal>);
+    </div>);
   }
 }
