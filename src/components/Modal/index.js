@@ -5,12 +5,12 @@ import { modals } from './mapping';
 export default class Modal extends React.Component {
 
   render() {
-    const { modal, onClose } = this.props;
-    if (!modal) return null;
-    const Modal = modals[modal];
+    const { actions, status } = this.props;
+    if (!status.modal) return null;
+    const Modal = modals[status.modal];
     return (<div className={styles.modal}>
       <div className={styles.modalContent}>
-        <input className={styles.close} type="button" value={'X'} onClick={onClose} />
+        <input className={styles.close} type="button" value={'X'} onClick={actions.onCloseModal} />
         <Modal {...this.props} />
       </div>
     </div>);

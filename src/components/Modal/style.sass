@@ -10,12 +10,28 @@
     background-color: rgb(0,0,0)
     background-color: rgba(0,0,0,0.4)
 
+    .modal-fade-appear
+        opacity: 0.01
+
+    .modal-fade-appear-active
+        opacity: 1
+        transition: opacity 1500ms ease-in
+
+    .modal-fade-leave
+        opacity: 1
+
+    .modal-fade-leave-active
+        opacity: 0.01
+        transition: opacity 1500ms ease-in
+
 .modalContent
     background-color: #fefefe
-    margin: 15% auto
+    border-radius: 5px
+    margin: 10% auto
     padding: 20px
     border: 1px solid #888
     width: 80%
 
 .close
     float: right
+

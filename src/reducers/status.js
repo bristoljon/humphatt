@@ -1,5 +1,9 @@
-import initialState from './initialState';
 import ACTION from '../actions/actionTypes';
+const initialState = {
+  small: false,
+  loading: false,
+  modal: null,
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -19,76 +23,7 @@ export default function reducer(state = initialState, action) {
       modal: null,
     };
   case ACTION.SIGN_UP:
-    switch (action.status) {
-    case 'PENDING':
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          loggedIn: false,
-          email: action.creds.email,
-          pass: action.creds.pass,
-          error: null,
-        },
-        loading: true,
-      };
-    case 'SUCCESS':
-      return {
-        ...state,
-        loading: false,
-      };
-    case 'FAILED':
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          loggedIn: false,
-          error: action.error,
-        },
-        loading: false,
-      };
-    }
-    break;
   case ACTION.LOG_IN:
-    switch (action.status) {
-    case 'PENDING':
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          loggedIn: false,
-          email: action.creds.email,
-          pass: action.creds.pass,
-          error: null,
-        },
-        loading: true,
-      };
-    case 'SUCCESS':
-      return {
-        ...state,
-        modal: null,
-        user: {
-          ...state.user,
-          loggedIn: true,
-          displayName: action.user.displayName,
-          email: action.user.email,
-          name: action.user.name,
-          error: null,
-        },
-        loading: false,
-      };
-    case 'FAILED':
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          loggedIn: false,
-          error: action.error,
-        },
-        loading: false,
-      };
-    }
-    break;
   case ACTION.LOG_OUT:
     switch (action.status) {
     case 'PENDING':
@@ -99,24 +34,12 @@ export default function reducer(state = initialState, action) {
     case 'SUCCESS':
       return {
         ...state,
-        modal: 'SIGNIN',
-        user: {
-          ...state.user,
-          loggedIn: false,
-          displayName: '',
-          email: '',
-          error: null,
-        },
+        modal: null,
         loading: false,
       };
     case 'FAILED':
       return {
         ...state,
-        user: {
-          ...state.user,
-          loggedIn: true,
-          error: action.error,
-        },
         loading: false,
       };
     }

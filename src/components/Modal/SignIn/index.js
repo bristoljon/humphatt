@@ -11,7 +11,7 @@ export default class SignIn extends React.Component {
     };
   }
   onSignIn = () => {
-    this.props.onSignIn(this.state.user, this.state.pass);
+    this.props.actions.onSignIn(this.state.user, this.state.pass);
   }
   onChangeUser = (e) => {
     this.setState({
@@ -24,7 +24,8 @@ export default class SignIn extends React.Component {
     });
   }
   render() {
-    const { props } = this;
+    console.log('props', this.props);
+    const { user } = this.props;
     return (<div>
       <h1>Sign In</h1>
       e-mail:
@@ -32,7 +33,7 @@ export default class SignIn extends React.Component {
       password:
       <input type="password" onChange={this.onChangePass} value={this.state.pass} />
       <input type="button" onClick={this.onSignIn} value={'GO'} />
-      <p>{props.user.error ? props.user.error.message : null}</p>
+      <p>{user.error ? user.error.message : null}</p>
     </div>);
   }
 }

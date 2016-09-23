@@ -58,12 +58,6 @@ export function userLogIn(email, pass) {
       },
     });
     auth.signInWithEmailAndPassword(email, pass)
-      .then(r => {
-        dispatch({
-          type: ACTION.LOG_IN,
-          status: 'SUCCESS',
-        });
-      })
       .catch(error => {
         dispatch({
           type: ACTION.LOG_IN,
@@ -103,7 +97,6 @@ export function userSignUp(email, pass, displayName, name) {
         });
       })
       .catch(error => {
-        console.log('error', error);
         dispatch({
           type: ACTION.SIGN_UP,
           status: 'FAILED',
