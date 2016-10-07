@@ -1,8 +1,8 @@
 import SignIn from './SignIn';
-import SignUp from './SignUp';
+import RSVP from './RSVP';
 
 export const modals = {
   SIGNIN: SignIn,
-  SIGNUP: SignUp,
+  SIGNUP: RSVP,
 };
 

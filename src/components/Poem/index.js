@@ -19,7 +19,7 @@ export default function Poem() {
       We'll say our vows<br/>
       With close friends and family<br/>
       Then join you all<br/>
-      For a bit fatty party<br/>
+      For a big fatty party<br/>
     </p>
     <p>
       Our wedding won't follow<br/>

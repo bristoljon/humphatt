@@ -6,7 +6,8 @@ import Poem from '../Poem';
 
 export default class Home extends React.Component {
   componentWillMount = () => {
-    this.props.actions.initialise();
+    console.log('Home', this.props);
+    this.props.actions.initialise(this.props.location);
   }
   render() {
     return (<div className={styles.main}>

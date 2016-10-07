@@ -1,6 +1,5 @@
 import ACTION from '../actions/actionTypes';
 const initialState = {
-  displayName: '',
   email: '',
   error: null,
   loggedIn: false,
@@ -45,7 +44,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loggedIn: true,
-        displayName: action.user.displayName,
+        rsvp: action.user.rsvp,
         email: action.user.email,
         name: action.user.name,
         error: null,
@@ -68,7 +67,6 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loggedIn: false,
-        displayName: '',
         email: '',
         error: null,
       };

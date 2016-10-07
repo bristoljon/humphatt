@@ -24,7 +24,6 @@ export default function reducer(state = initialState, action) {
     };
   case ACTION.SIGN_UP:
   case ACTION.LOG_IN:
-  case ACTION.LOG_OUT:
     switch (action.status) {
     case 'PENDING':
       return {
@@ -35,6 +34,25 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         modal: null,
+        loading: false,
+      };
+    case 'FAILED':
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+    break;
+  case ACTION.LOG_OUT:
+    switch (action.status) {
+    case 'PENDING':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'SUCCESS':
+      return {
+        ...state,
         loading: false,
       };
     case 'FAILED':

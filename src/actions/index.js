@@ -71,7 +71,7 @@ export function userLogIn(email, pass) {
   };
 }
 
-export function userSignUp(email, pass, displayName, name) {
+export function userSignUp(email, pass, rsvp, name) {
   return dispatch => {
     dispatch({
       type: ACTION.SIGN_UP,
@@ -79,14 +79,14 @@ export function userSignUp(email, pass, displayName, name) {
       creds: {
         email,
         pass,
-        displayName,
+        rsvp,
         name,
       },
     });
     auth.createUserWithEmailAndPassword(email, pass)
       .then(response => {
         return database.ref('users/' + response.uid).set({
-          displayName,
+          rsvp,
           name,
         });
       })
@@ -119,7 +119,6 @@ function onUserLogIn(user) {
         status: 'SUCCESS',
         user: {
           email: user.email,
-          displayName: data.displayName,
           name: data.name,
         },
       });
@@ -127,7 +126,7 @@ function onUserLogIn(user) {
   };
 }
 
-export function initialise() {
+export function initialise(location) {
   return dispatch => {
     dispatch(deviceWidthChange(window.innerWidth < 640));
     const mql = window.matchMedia('(min-width: 640px)');
@@ -145,5 +144,6 @@ export function initialise() {
         });
       }
     });
+    if (location.pathname === '/rsvp') dispatch(openModal('SIGNUP'));
   };
 }
