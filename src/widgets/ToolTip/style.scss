@@ -1,0 +1,71 @@
+.rm-tooltip {
+    display: block;
+    min-width: 200px;
+    pointer-events: none;
+    z-index: 100;
+    position: fixed;
+    background: #262637;
+    color: #FFFFFF;
+    padding: 10px 15px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.4);
+    white-space: pre;
+
+    .rm-tooltip-arrow-above, .rm-tooltip-arrow-below {
+        border: solid transparent;
+        visibility: inherit;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-width: 10px;
+        margin-left: -10px;
+    }
+
+    .rm-tooltip-arrow-above {
+        border-top-color: #262637;
+    }
+
+    .rm-tooltip-arrow-below {
+        border-bottom-color: #262637;
+    }
+}
+
+.rm-tooltip-invisible-branch.rm-tooltip-handler {
+    display: inline-block;
+    position: static;
+    background: url('images/exclamation.svg') no-repeat;
+    background-size: cover;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;;
+    margin-left: 5px;
+
+    &:after {
+        content: ' ';
+    }
+}
+
+.rm-tooltip-error-messages {
+    background: $bg-error;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+    > div {
+        background: url('images/small-excl.svg') 0 5px no-repeat;
+        padding-left: 8px
+    }
+
+    .rm-tooltip-arrow-above, .rm-tooltip-arrow-below {
+        background: transparent;
+        padding: 0;
+    }
+
+    .rm-tooltip-arrow-above {
+        border-top-color: $bg-error;
+    }
+
+    .rm-tooltip-arrow-below {
+        border-bottom-color: $bg-error;
+    }
+}

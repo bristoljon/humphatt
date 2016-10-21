@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './style';
-import { InputGroup, Button } from '../../../widgets';
+import { InputGroup, Button, ToolTip } from '../../../widgets';
 
 // const users = database.ref('users');
 export default class RSVP extends React.Component {
@@ -54,7 +54,13 @@ export default class RSVP extends React.Component {
             <InputGroup className={styles.attending} label="attending:">
                 <Button className={styles.special}>Yes</Button>
                 <Button>Maybe</Button>
-                <Button>No</Button>
+                <ToolTip
+                    name="tooltip-error-messages"
+                    tip={"Hello"}
+                    visible
+                    zIndex={1000}>
+                    <Button>No</Button>
+                </ToolTip>
             </InputGroup>
             <p>
                 <input type="button" onClick={this.onSignUp} value={'GO'} />
