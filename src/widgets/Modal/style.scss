@@ -1,0 +1,86 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+
+    :global(.rm-dialog) {
+        display: inline-block;
+        position: fixed;
+        background: white;
+        border-radius: 2px;
+        padding:  0 0 15px 0;
+        top: 50%;
+        left: 50%;
+        width: 500px;
+        margin-left: -250px;
+        margin-top: -95px;
+        box-shadow: 0 5 15 0 rgba(0,0,0,0.75);
+        transition: all 150ms ease-in-out;
+
+        h1 {
+            width: 100%;
+            height: 60px;
+            padding:  15px 25px;
+            color: yellow;
+            background: orange;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        p {
+            margin: 0 0 25px 25px;
+        }
+
+        .rm-yes-button {
+            float: right;
+            margin-right: 15px;
+            color: white;
+            background-color: red;
+
+            &:hover {
+                background-color: lighten(red, 4%);
+            }
+
+            &:active {
+                background-color: darken(red, 4%);
+            }
+        }
+
+        .rm-no-button {
+            float: right;
+            margin-right: 15px;
+            background-color: grey;
+            border: 1px solid grey;
+            padding: 8px 34px 9px 34px;
+
+            &:hover {
+                background-color: lighten(grey, 4%);
+            }
+
+            &:active {
+                background-color: darken(grey, 4%);
+            }
+        }
+
+    }
+
+    :global(.animate-enter) {
+        opacity: 0;
+    }
+
+    :global(.animate-enter.animate-enter-active) {
+        opacity: 1;
+    }
+
+    :global(.animate-leave) {
+        opacity: 1;
+    }
+
+    :global(.animate-leave.animate-leave-active) {
+        opacity: 0;
+    }
+}
