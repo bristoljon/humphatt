@@ -1,0 +1,99 @@
+@mixin icon-search($color) {
+    $image: base64Encode('<svg width="15px" height="15px" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="m444.4 13.802c-.973.693-2.164 1.101-3.45 1.101-3.287 0-5.952-2.665-5.952-5.952 0-3.287 2.665-5.952 5.952-5.952 3.287 0 5.952 2.665 5.952 5.952 0 1.286-.408 2.477-1.101 3.45l3.91 3.91c.385.385.382 1 0 1.384l-.016.016c-.381.381-1 .382-1.384 0l-3.91-3.91m-3.45-.299c2.514 0 4.551-2.038 4.551-4.551 0-2.514-2.038-4.551-4.551-4.551-2.514 0-4.551 2.038-4.551 4.551 0 2.514 2.038 4.551 4.551 4.551" transform="translate(-435-3)" fill="#{$color}"/></g></svg>');
+    background-image: url('data:image/svg+xml;base64,#{$image}');
+}
+
+@mixin icon-clear($color) {
+    $image: base64Encode('<svg width="11px" height="11px" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg"><g fill="#{$color}" fill-rule="evenodd"><path d="m10.361.639c.179.179.179.469.001.648l-9.08 9.08c-.179.179-.467.18-.648-.001-.179-.179-.179-.469-.001-.648l9.08-9.08c.179-.179.467-.18.648.001"/><path d="m1.286.638c-.179-.179-.467-.18-.648.001-.179.179-.179.469-.001.648l9.08 9.08c.179.179.467.18.648-.001.179-.179.179-.469.001-.648l-9.08-9.08"/></g></svg>');
+    background-image: url('data:image/svg+xml;base64,#{$image}');
+}
+
+
+.filtered-list-view {
+
+    .search-filter {
+        position: relative;
+        padding: 0 15px;
+        background: transparent right 15px center no-repeat;
+        @include icon-search($color-icon-btn);
+
+        .rm-text {
+            display: block;
+            height: 40px;
+            padding-top: 10px;
+            border-bottom: 1px solid $bg-line;
+            position: relative;
+
+            input {
+                display: block;
+                width: 100%;
+                border: 0;
+                outline: none;
+                background: transparent;
+                padding-right: 40px;
+            }
+
+            &.rm-empty + .rm-clear-button {
+                display: none;
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                height: 1px;
+                width: 0;
+                background-color: $bg-highlight;
+                margin: 8px auto 0 auto;
+                transition: all 0.3s ease-in-out;
+            }
+
+        }
+
+        .clear-button {
+            display: block;
+            position: absolute;
+            right: 34px;
+            top: 15px;
+            text-indent: -9000px;
+            overflow: hidden;
+            width: 15px;
+            height: 15px;
+            padding: 0;
+            margin: 0;
+            background: transparent no-repeat;
+            @include icon-clear($color-delete-btn);
+        }
+
+        &:hover {
+            @include icon-search(darken($bg-line, 4%));
+
+            .rm-text {
+                border-color: darken($bg-line, 4%);
+            }
+
+        }
+
+        &.rm-focus {
+            @include icon-search($bg-highlight);
+
+            .rm-text:after {
+                width: 100%;
+            }
+
+            &:hover .rm-text {
+                border-color: $bg-line;
+            }
+
+        }
+
+        .rm-clear-button:hover {
+            @include icon-clear(#EB3264);
+        }
+
+    }
+
+    input:placeholder-shown + .rm-clear-button {
+        display: none;
+    }
+
+}

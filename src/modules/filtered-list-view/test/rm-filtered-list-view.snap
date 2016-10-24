@@ -1,0 +1,43 @@
+exports[`render()`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": Array [
+        Object {
+          "props": Object {
+            "data-mock-props": "{\"type\":\"text\",\"value\":\"FILTER\",\"placeholder\":\"PLACEHOLDER\"}",
+            "data-mock-type": "Text"
+          },
+          "type": "DIV"
+        },
+        Object {
+          "children": Array [
+            "Clear"
+          ],
+          "props": Object {
+            "data-mock-props": "{\"name\":\"clear-button\"}",
+            "data-mock-type": "Button"
+          },
+          "type": "DIV"
+        }
+      ],
+      "props": Object {
+        "class": "rm-search-filter"
+      },
+      "type": "DIV"
+    },
+    Object {
+      "props": Object {
+        "data-mock-props": "{\"ListItem\":\"LIST_ITEM\",\"items\":\"ITEMS\",\"emptyMessage\":\"EMPTY_MESSAGE\"}",
+        "data-mock-type": "RMListView"
+      },
+      "type": "DIV"
+    }
+  ],
+  "props": Object {
+    "class": "rm-filtered-list-view",
+    "data-reactroot": ""
+  },
+  "type": "DIV"
+}
+`;

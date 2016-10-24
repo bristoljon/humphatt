@@ -1,0 +1,63 @@
+@mixin icon-remove($color) {
+    $image: base64Encode('<svg width="11px" height="11px" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg"><g fill="#{$color}" fill-rule="evenodd"><path d="m10.361.639c.179.179.179.469.001.648l-9.08 9.08c-.179.179-.467.18-.648-.001-.179-.179-.179-.469-.001-.648l9.08-9.08c.179-.179.467-.18.648.001"/><path d="m1.286.638c-.179-.179-.467-.18-.648.001-.179.179-.179.469-.001.648l9.08 9.08c.179.179.467.18.648-.001.179-.179.179-.469.001-.648l-9.08-9.08"/></g></svg>');
+    background-image: url('data:image/svg+xml;base64,#{$image}');
+}
+
+.list-view {
+    overflow: auto;
+    padding: 0 15px;
+
+    & > ul > li {
+        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAABAQMAAADHB02zAAAABlBMVEUAAADf3+HyH8D8AAAAAXRSTlMAQObYZgAAAApJREFUCNdjeAAAAOIA4b/4XEIAAAAASUVORK5CYII=");
+        background-repeat: repeat-x;
+        background-position: bottom;
+        overflow: hidden;
+
+        > label, > span {
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding-top: 14px;
+            padding-bottom: 15px;
+            font-weight: normal;
+
+            .branch-title b {
+                color: #EB3264;
+            }
+
+            .remove-button {
+                text-indent: -9000px;
+                overflow: hidden;
+                width: 15px;
+                height: 15px;
+                padding: 0;
+                margin: 6px 0 0 0;
+                background: transparent no-repeat;
+                @include icon-remove($color-delete-btn);
+
+                &:hover {
+                    @include icon-remove(#EB3264);
+                }
+
+            }
+
+        }
+
+    }
+
+    .message {
+        white-space: normal;
+        position: relative;
+        top: 50%;
+        width: 60%;
+        margin: 0 auto;
+        padding: 29px 25px;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        text-align: center;
+        font-size: $font-size-medium;
+        font-weight: $font-weight-light;
+    }
+
+
+}
